@@ -20,6 +20,11 @@ module.exports = (req, res, next) => {
     res.status(400).json({ message: "Not authenticated" });
     throw error;
   }
+  if (decodedToken.role !== "admin") {
+    const error = new Error("Not authenticated.");
+    res.status(400).json({ message: "Not authenticated" });
+    throw error;
+  }
   req.userId = decodedToken.userId;
   next();
 };

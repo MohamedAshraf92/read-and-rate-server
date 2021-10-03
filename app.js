@@ -3,6 +3,9 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 
+const userRoutes = require("./routes/user");
+const categoryRoutes = require("./routes/category");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -16,6 +19,9 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
 });
+
+app.use("/user", userRoutes);
+app.use("/category", categoryRoutes);
 
 mongoose
   .connect(
