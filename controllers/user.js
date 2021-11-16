@@ -30,7 +30,7 @@ exports.login = async (req, res, next) => {
         role: user.role,
       },
       "topsecrectreadandrate",
-      { expiresIn: "1h" }
+      { expiresIn: "10h" }
     );
 
     const sentUser = {
