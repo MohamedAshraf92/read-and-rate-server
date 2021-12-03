@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const path = require("path");
+require("dotenv").config();
 
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
@@ -31,10 +32,10 @@ app.use("/category", categoryRoutes);
 app.use("/author", authorRoutes);
 
 mongoose
-  .connect(
-    "mongodb+srv://mohamedashraf92:pinkslap0-@readandrate.l9n6w.mongodb.net/readAndRate?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
+  .connect(process.env.DB_HOST, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then((result) => {
     app.listen(8080);
     console.log(`Server running on port 8080`);
