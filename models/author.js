@@ -19,12 +19,6 @@ const authorSchema = new Schema(
       type: String,
       default: "",
     },
-    books: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Book",
-      },
-    ],
   },
   { timestamps: true }
 );

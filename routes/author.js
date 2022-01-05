@@ -9,8 +9,8 @@ router.get("/", authorsController.getAuthors);
 
 router.post("/", isAdmin, authorsController.addAuthor);
 
-// router.patch("/", isAdmin, categoriesController.editCategory);
+router.patch("/", isAdmin, authorsController.editAuthor);
 
-// router.delete("/", isAdmin, categoriesController.deleteCategory);
+router.delete("/", isAdmin, authorsController.deleteAuthor);
 
 module.exports = router;
