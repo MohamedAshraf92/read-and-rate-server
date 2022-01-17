@@ -7,6 +7,7 @@ require("dotenv").config();
 const userRoutes = require("./routes/user");
 const categoryRoutes = require("./routes/category");
 const authorRoutes = require("./routes/author");
+const bookRoutes = require("./routes/book");
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/images", express.static("images"));
 app.use("/user", userRoutes);
 app.use("/category", categoryRoutes);
 app.use("/author", authorRoutes);
+app.use("/book", bookRoutes);
 
 mongoose
   .connect(process.env.DB_HOST, {

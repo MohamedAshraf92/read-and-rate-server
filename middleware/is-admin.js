@@ -13,6 +13,8 @@ module.exports = (req, res, next) => {
     decodedToken = jwt.verify(token, "topsecrectreadandrate");
   } catch (err) {
     err.statusCode = 500;
+    // res.status(400).json({ message: "Session expired, login again" });
+    res.status(400).json({ message: err.name });
     throw err;
   }
   if (!decodedToken) {
