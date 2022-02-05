@@ -7,6 +7,10 @@ const bookSchema = new Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     authors: [
       {
         type: Schema.Types.ObjectId,

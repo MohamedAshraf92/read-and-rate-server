@@ -18,6 +18,7 @@ exports.getBooks = async (req, res, next) => {
 exports.addBook = async (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required(),
+    description: Joi.string().required(),
     authors: Joi.array().required(),
     categories: Joi.array().required(),
     photo: Joi.any(),
@@ -33,7 +34,7 @@ exports.addBook = async (req, res, next) => {
     throw error;
   }
 
-  const { name, authors, categories } = req.body;
+  const { name, description, authors, categories } = req.body;
   const photo = req.file.path;
 
   const addedBook = await Book.findOne({
@@ -48,6 +49,7 @@ exports.addBook = async (req, res, next) => {
   try {
     const newBook = new Book({
       name,
+      description,
       authors,
       categories,
       photo,
@@ -68,6 +70,7 @@ exports.addBook = async (req, res, next) => {
 exports.editBook = async (req, res, next) => {
   const schema = Joi.object({
     name: Joi.string().required(),
+    description: Joi.string().required(),
     authors: Joi.array().required(),
     categories: Joi.array().required(),
     photo: Joi.any(),
@@ -84,7 +87,7 @@ exports.editBook = async (req, res, next) => {
     throw error;
   }
 
-  const { name, authors, categories, bookId } = req.body;
+  const { name, description, authors, categories, bookId } = req.body;
 
   const editedBook = await Book.findById(bookId);
 
@@ -105,6 +108,7 @@ exports.editBook = async (req, res, next) => {
       });
     }
     editedBook.name = name;
+    editedBook.description = description;
     editedBook.authors = authors;
     editedBook.categories = categories;
     editedBook.photo = photoLink;

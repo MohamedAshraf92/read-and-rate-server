@@ -5,7 +5,7 @@ const Author = require("../models/author");
 
 exports.getAuthors = async (req, res, next) => {
   try {
-    const authors = await Author.find().sort({ name: 1 });
+    const authors = await Author.find().sort({ firstName: 1, lastName: 1 });
     res.status(200).json(authors);
   } catch (err) {
     if (!err.statusCode) {
